@@ -7,12 +7,29 @@ void main() {
 //Every Widget must include:
 // A) Extension of Stateful / Stateless Component
 // B) a build method.
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+
+  void answerQuestion() {
+    setState(() {
+      questionIndex = questionIndex + 1;
+    });
+    print(questionIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
     var questions = [
       Text('What is your favorite color?'),
-      Text('What is your favorite food?')
+      Text('What is your favorite food?'),
+      Text('What is your favorite kind of dog')
     ];
 
     return MaterialApp(
@@ -20,10 +37,13 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: Text('My first App')),
         body: Column(
           children: [
-            Text('The question!'),
-            ElevatedButton(child: Text('Answer1'), onPressed: null),
-            ElevatedButton(child: Text('Answer2'), onPressed: null),
-            ElevatedButton(child: Text('Answer3'), onPressed: null)
+            questions[questionIndex],
+            ElevatedButton(
+                child: Text('Answer1'), onPressed: () => answerQuestion()),
+            ElevatedButton(
+                child: Text('Answer2'), onPressed: () => answerQuestion()),
+            ElevatedButton(
+                child: Text('Answer3'), onPressed: () => answerQuestion())
           ],
         ),
       ),
