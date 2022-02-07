@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/question.dart';
+
+import './question.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,26 +13,27 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+//Classes can be made private by adding an underscore to the front of the variable name
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     var questions = [
-      Text('What is your favorite color?'),
-      Text('What is your favorite food?'),
-      Text('What is your favorite kind of dog')
+      'What is your favorite color?',
+      'What is your favorite food?',
+      'What is your favorite kind of dog'
     ];
 
     return MaterialApp(
@@ -37,13 +41,13 @@ class MyAppState extends State<MyApp> {
         appBar: AppBar(title: Text('My first App')),
         body: Column(
           children: [
-            questions[questionIndex],
+            Question(questions[_questionIndex]),
             ElevatedButton(
-                child: Text('Answer1'), onPressed: () => answerQuestion()),
+                child: Text('Answer1'), onPressed: () => _answerQuestion()),
             ElevatedButton(
-                child: Text('Answer2'), onPressed: () => answerQuestion()),
+                child: Text('Answer2'), onPressed: () => _answerQuestion()),
             ElevatedButton(
-                child: Text('Answer3'), onPressed: () => answerQuestion())
+                child: Text('Answer3'), onPressed: () => _answerQuestion())
           ],
         ),
       ),
