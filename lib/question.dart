@@ -5,7 +5,7 @@ class Question extends StatelessWidget {
   final String questionText;
 
   //Wrapping this in curly braces makes it into a named arguement as opposed to a positional arguement. (think react named props vs props.children[..whatever])
-  Question(this.questionText);
+  const Question(this.questionText);
 
   @override
   Widget build(BuildContext context) {
